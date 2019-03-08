@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -20,6 +20,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { UserService } from './_service/user.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -34,7 +35,8 @@ export function tokenGetter() {
       MemberListComponent,
       ListsComponent,
       MessagesComponent,
-      MemberCardComponent
+      MemberCardComponent,
+      MemberDetailComponent
    ],
    imports: [
       BrowserModule,
@@ -49,7 +51,8 @@ export function tokenGetter() {
           whitelistedDomains: ['localhost:5001'],
           blacklistedRoutes: ['localhost:5001/api/auth']
         }
-      })
+      }),
+      TabsModule.forRoot()
    ],
    providers: [
       AuthService,
