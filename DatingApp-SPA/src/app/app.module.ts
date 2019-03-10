@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -21,6 +22,8 @@ import { UserService } from './_service/user.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -44,6 +47,7 @@ export function tokenGetter() {
       FormsModule,
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
+      NgxGalleryModule,
       //Add JwtModule auto inject Authorization vào header
       JwtModule.forRoot({
         config: {
@@ -52,7 +56,7 @@ export function tokenGetter() {
           blacklistedRoutes: ['localhost:5001/api/auth']
         }
       }),
-      TabsModule.forRoot()
+      TabsModule.forRoot(),
    ],
    providers: [
       AuthService,
@@ -60,6 +64,8 @@ export function tokenGetter() {
       AlertifyService,
       AuthGuard,
       UserService,
+      MemberDetailResolver,
+      MemberListResolver
    ],
    bootstrap: [
       AppComponent
