@@ -52,5 +52,8 @@ namespace DatingApp.API.Controllers
 
             throw new Exception($"Updating user {id} failed on save");
         }
+
+        // [HttpPost]
+        // public async Task<IActionResult> AddPhotoForUser(int )
     }
 }
